@@ -3,8 +3,9 @@ import QtQuick 2.11
 Item {
     property string itemText    : ""
     property string itemColor   : ""
-    property int    itemRadius  : 10
+    property int    itemRadius  : 20
     property string textColor
+    property int    textSize    : 32
 
     Rectangle {
         id              : idRect_Item
@@ -19,7 +20,7 @@ Item {
             id                  : idText_Item
             text                : itemText
             color               : textColor
-            font.pixelSize      : 24
+            font.pixelSize      : textSize
             font.weight         : Font.DemiBold
             anchors.centerIn    : parent
         }
