@@ -5,5 +5,6 @@
         <file>AppListModel.qml</file>
         <file>ListViewVersion1.qml</file>
         <file>ListViewVersion2.qml</file>
+        <file>ListViewVersion3.qml</file>
     </qresource>
 </RCC>

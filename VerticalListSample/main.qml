@@ -9,11 +9,17 @@ Window {
     flags   : Qt.WindowStaysOnTopHint
     color   : "lightgray"
 
+    // Rectangle Alone
     ListViewVersion1 {
         visible: true
     }
 
+    // Highlight
     ListViewVersion2 {
+        visible: false
+    }
+
+    ListViewVersion3 {
         visible: false
     }
 }
