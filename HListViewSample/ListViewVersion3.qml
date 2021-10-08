@@ -4,6 +4,8 @@ import QtQuick.Layouts 1.2
 Item {
     property int appSpacing : 30
     property int appWidth   : 250
+    property int appHeight  : 500
+    property int margine    : 50
 
     id              : idItem_Root
     anchors.fill    : parent
@@ -15,8 +17,8 @@ Item {
     RowLayout {
         id                      : idRowLayout_App
         anchors.fill            : parent
-        anchors.topMargin       : 100
-        anchors.bottomMargin    : 100
+        anchors.topMargin       : margine
+        anchors.bottomMargin    : margine
 
         ListView {
             id                  : idListView_App
@@ -40,56 +42,93 @@ Item {
                     anchors.fill: parent
                     onClicked: {
                         idListView_App.currentIndex = index
-                        idListView_App.currentItem.visible = false
-                        idApp_Ghost.state = "visibleOn"
+
+                        if (idListView_App.currentIndex === (idListModel_App.count - 1)) {
+                            idListModel_App.insert(
+                                        (idListModel_App.count - 1),
+                                        { "name" : "a" + (idListModel_App.count - 1),
+                                            "color" : "gray", "tColor" : "#FFFFFF" })
+                        } else {
+                            idRect_Ghost.x = idListView_App.currentItem.x - idListView_App.contentX
+                            idRect_Ghost.visible = true
+                            idDelegate_App.visible = false
+                        }
                     }
+                }
+            }
+
+            onOpacityChanged: {
+                if (idListView_App.opacity == 0) {
+                    console.log("opacity 0")
+                    idListView_App.visible = false
                 }
             }
         }
     }
 
-    AppDelegate {
-        id          : idApp_Ghost
-        x           : 100 /*idListView_App.currentItem.x - idListView_App.contentX*/
-        y           : 100
-        width       : appWidth
-        height      : idListView_App.height
-        itemColor   : idListView_App.currentItem.itemColor
-        visible     : false
+    Rectangle {
+        id              : idRect_Ghost
+        y               : margine
+        width           : appWidth
+        height          : idItem_Root.height - (margine * 2)
+        color           : idListView_App.currentItem.itemColor
+        radius          : 20
+        border.width    : 2
+        border.color    : "#FFFFFF"
+        visible         : false
 
-        state: "visibleOff"
 
-        states: [
-            State {
-                name: "visibleOn"
-                PropertyChanges { target: idApp_Ghost; visible: true; }
-                PropertyChanges { target: idApp_Ghost; x: 0; }
-            },
-            State {
-                name: "sizeUp"
-//                PropertyChanges { target: idApp_Ghost; visible: true; }
-//                PropertyChanges { target: idApp_Ghost; x: 200; }
-//                PropertyChanges { target: idApp_Ghost; width: idItem_Root.width; }
-            }
-        ]
+        Behavior on visible {
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation {
+                        target      : idListView_App
+                        properties  : "opacity"
+                        to          : 0
+                        duration    : 100
+                    }
 
-        transitions: [
-            Transition {
-                from: "visibleOff"
-                to: "visibleOn"
-            },
+                    NumberAnimation {
+                        target      : idRowLayout_App
+                        properties  : "anchors.topMargin, anchors.bottomMargin"
+                        to          : 150
+                        duration    : 100
+                    }
 
-            Transition {
-                from: "visibleOn"
-                to: "sizeUp"
-//                PropertyAnimation { target: idApp_Ghost; property: "width"; duration: 1000; }
-            }
-        ]
+                    NumberAnimation {
+                        target      : idRect_Ghost
+                        properties  : "x"
+                        to          : 0
+                        duration    : 300
+                    }
+                }
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                parent.state = "sizeUp"
+                PauseAnimation {
+                    duration    : 50
+                }
+
+                ParallelAnimation {
+                    NumberAnimation {
+                        target      : idRect_Ghost
+                        properties  : "width"
+                        to          : idItem_Root.width
+                        duration    : 100
+                    }
+
+                    NumberAnimation {
+                        target      : idRect_Ghost
+                        properties  : "y"
+                        to          : 0
+                        duration    : 100
+                    }
+
+                    NumberAnimation {
+                        target      : idRect_Ghost
+                        properties  : "height"
+                        to          : idItem_Root.height
+                        duration    : 100
+                    }
+                }
             }
         }
     }
