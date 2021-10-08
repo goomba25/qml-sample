@@ -1,5 +1,6 @@
 import QtQuick 2.11
 import QtQuick.Layouts 1.2
+import QtGraphicalEffects 1.0
 
 Item {
     property int appSpacing : 30
@@ -29,13 +30,14 @@ Item {
             model                   : idListModel_App
 
             delegate: AppDelegate {
-                id              : idDelegate_App
-                width           : appWidth
-                height          : appHeight
-                itemColor       : model.color
-                itemText        : model.name
-                textColor       : model.tColor
-                anchors.verticalCenter: parent.verticalCenter
+                id                      : idDelegate_App
+                width                   : appWidth
+                height                  : appHeight
+                itemColor               : model.color
+                itemText                : model.name
+                textColor               : model.tColor
+                imageSource             : model.image
+                anchors.verticalCenter  : parent.verticalCenter
 
                 MouseArea {
                     anchors.fill: parent
@@ -77,9 +79,18 @@ Item {
             height                  : appHeight
             radius                  : 20
             color                   : idListView_App.currentItem.itemColor
-            border.width            : 2
-            border.color            : "#FFFFFF"
+//            border.width            : 2
+//            border.color            : "#FFFFFF"
             visible                 : false
+
+            Image {
+                id              : idImage_Ghost
+                source          : idListView_App.currentItem.imageSource
+                anchors.fill    : parent
+                fillMode        : Image.PreserveAspectCrop
+                layer.enabled   : true
+                layer.effect    : OpacityMask { maskSource: idRect_Ghost }
+            }
 
             MouseArea {
                 anchors.fill: parent
