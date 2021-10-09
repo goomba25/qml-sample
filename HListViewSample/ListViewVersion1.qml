@@ -34,7 +34,6 @@ Item {
                 width                   : appWidth
                 height                  : appHeight
                 itemColor               : model.color
-                itemText                : model.name
                 textColor               : model.tColor
                 imageSource             : model.image
                 anchors.verticalCenter  : parent.verticalCenter
@@ -79,8 +78,6 @@ Item {
             height                  : appHeight
             radius                  : 20
             color                   : idListView_App.currentItem.itemColor
-//            border.width            : 2
-//            border.color            : "#FFFFFF"
             visible                 : false
 
             Image {

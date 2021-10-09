@@ -6,7 +6,6 @@ Item {
     property string itemColor   : ""
     property int    itemRadius  : 20
     property string textColor   : ""
-    property int    textSize    : 32
     property string imageSource : ""
 
     Rectangle {
@@ -14,8 +13,6 @@ Item {
         anchors.fill    : parent
         color           : itemColor
         radius          : itemRadius
-        border.width    : 2
-        border.color    : "#FFFFFF"
         clip            : true
 
         Image {

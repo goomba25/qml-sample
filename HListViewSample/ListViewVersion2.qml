@@ -34,7 +34,6 @@ Item {
                 width           : 250
                 height          : idRowLayout_App.height
                 itemColor       : model.color
-                itemText        : model.name
                 textColor       : model.tColor
 
                 MouseArea {
