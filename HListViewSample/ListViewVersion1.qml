@@ -126,6 +126,13 @@ Item {
                             to          : idRowLayout_Ghost.y
                             duration    : 800
                         }
+
+                        NumberAnimation {
+                            target      : idRect_Ghost
+                            property    : "radius"
+                            to          : 0
+                            duration    : 800
+                        }
                     }
 
                     PauseAnimation {
