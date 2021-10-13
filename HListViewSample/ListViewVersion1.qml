@@ -89,13 +89,6 @@ Item {
                 layer.effect    : OpacityMask { maskSource: idRect_Ghost }
             }
 
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    console.log(idListView_App.children)
-                }
-            }
-
             Behavior on visible {
                 SequentialAnimation {
                     ParallelAnimation {
