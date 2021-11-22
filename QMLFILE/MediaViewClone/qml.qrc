@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>app_resources_album.png</file>
+        <file>app_resources_1dpi_normal_BtMusic_bt.png</file>
+    </qresource>
+</RCC>

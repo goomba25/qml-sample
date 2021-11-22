@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>AppDelegate.qml</file>
+        <file>AppListModel.qml</file>
+        <file>ListViewVersion1.qml</file>
+        <file>ListViewVersion2.qml</file>
+        <file>ListViewVersion3.qml</file>
+    </qresource>
+</RCC>

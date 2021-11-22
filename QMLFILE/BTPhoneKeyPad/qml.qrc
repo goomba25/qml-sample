@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>BTPhoneKeyPadView.qml</file>
+        <file alias="button0">image/0.png</file>
+        <file alias="button1">image/1.png</file>
+        <file alias="button2">image/2.png</file>
+        <file alias="button3">image/3.png</file>
+        <file alias="button4">image/4.png</file>
+        <file alias="button5">image/5.png</file>
+        <file alias="button6">image/6.png</file>
+        <file alias="button7">image/7.png</file>
+        <file alias="button8">image/8.png</file>
+        <file alias="button9">image/9.png</file>
+        <file alias="asterisk">image/asterisk.png</file>
+        <file alias="call">image/call.png</file>
+        <file alias="CallEnd">image/CallEnd.png</file>
+        <file alias="delete">image/delete.png</file>
+        <file alias="pound">image/pound.png</file>
+    </qresource>
+</RCC>
